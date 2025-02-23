@@ -1,0 +1,149 @@
+/* Custom Font */
+.caramel-regular {
+    font-family: "Caramel", serif;
+    font-style: normal;
+  }
+  /* Gold Text Color */
+  .text-gold {
+    color: #ffd700;
+  }
+  /* Background Animation */
+  .cover-background {
+    animation: changeBackground 25s infinite;
+    background-size: cover;
+    background-position: center;
+  }
+  @keyframes changeBackground {
+    0%,
+    100% {
+      background-image: url("./src/cover/cover1.jpg");
+    }
+    20% {
+      background-image: url("./src/cover/cover2.jpg");
+    }
+    40% {
+      background-image: url("./src/cover/cover3.jpg");
+    }
+    60% {
+      background-image: url("./src/cover/cover4.jpg");
+    }
+    80% {
+      background-image: url("./src/cover/cover5.jpg");
+    }
+  }
+  /* Pop-up Styles */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1f2937;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+  }
+  .popup img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .popup img:hover {
+    transform: scale(1.05);
+  }
+  .popup-content {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+  .popup-content p {
+    font-size: 14px;
+    color: #d1d5db;
+    margin-bottom: 10px;
+  }
+  .popup button {
+    background-color: #374151;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .popup button:hover {
+    background-color: #4b5563;
+  }
+  /* Overlay Styles */
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+  }
+  /* Fullscreen Styles */
+  .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .fullscreen img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  /* Close Button for Fullscreen */
+  .close-fullscreen {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .close-fullscreen:hover {
+    background-color: #4b5563;
+  }
+  /* Custom Scrollbar */
+  .popup-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  .popup-content::-webkit-scrollbar-track {
+    background: #374151;
+    border-radius: 4px;
+  }
+  .popup-content::-webkit-scrollbar-thumb {
+    background: #6b7280;
+    border-radius: 4px;
+  }
+  .popup-content::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
