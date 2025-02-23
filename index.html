@@ -1,279 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foto Qiut</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FOTOQIUT</title>
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="FOTOQIUT - Capturing memories, bringing stories to life. Professional photography services for Raya and special occasions."
+    />
+    <meta
+      name="keywords"
+      content="photography, FOTOQIUT, Raya photoshoot, booking, memories"
+    />
+    <meta name="author" content="FOTOQIUT" />
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Use the official FontAwesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Google Font CDN -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caramel&display=swap" rel="stylesheet">
-    <!-- Custom CSS for Yellowtail font -->
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caramel&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
     <style>
-        .caramel-regular {
-            font-family: "Caramel", serif;
-            font-style: normal;
+      /* Custom Font */
+      .caramel-regular {
+        font-family: "Caramel", serif;
+        font-style: normal;
+      }
+      /* Gold Text Color */
+      .text-gold {
+        color: #ffd700;
+      }
+      /* Background Animation */
+      .cover-background {
+        animation: changeBackground 25s infinite;
+        background-size: cover;
+        background-position: center;
+      }
+      @keyframes changeBackground {
+        0%,
+        100% {
+          background-image: url("./cover1.jpg");
         }
-        .text-gold {
-            color: #FFD700; /* Gold color */
+        20% {
+          background-image: url("./cover2.jpg");
         }
-        .cover-background {
-            animation: changeBackground 25s infinite;
-            background-size: cover;
-            background-position: center;
+        40% {
+          background-image: url("./cover3.jpg");
         }
-        @keyframes changeBackground {
-            0%, 100% { background-image: url('./cover1.jpg'); }
-            20% { background-image: url('./cover2.jpg'); }
-            40% { background-image: url('./cover3.jpg'); }
-            60% { background-image: url('./cover4.jpg'); }
-            80% { background-image: url('./cover5.jpg'); }
+        60% {
+          background-image: url("./cover4.jpg");
         }
-
-        /* Pop-up styles */
-        .popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #1f2937; /* Dark gray matching the website theme */
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    width: 90%;
-    max-width: 700px;
-    text-align: center;
-}
-
-.popup img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    cursor: pointer; /* Indicate the image is clickable */
-    transition: transform 0.3s ease;
-}
-
-.popup img:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
-}
-
-.popup-content {
-    max-height: 300px; /* Adjust this value as needed */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding-right: 10px; /* Add some padding to avoid text touching the scrollbar */
-}
-
-.popup-content p {
-    font-size: 14px;
-    color: #d1d5db; /* Light gray text for contrast */
-    margin-bottom: 10px; /* Add spacing between paragraphs */
-}
-
-.popup button {
-    background-color: #374151; /* Slightly lighter gray for buttons */
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.popup button:hover {
-    background-color: #4b5563; /* Even lighter gray on hover */
-}
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-            backdrop-filter: blur(5px); /* Blur effect */
-            z-index: 999;
+        80% {
+          background-image: url("./cover5.jpg");
         }
-
-        /* Fullscreen styles */
-        .fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* Dark background */
-            z-index: 1001;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .fullscreen img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-
-        /* Close button for fullscreen */
-        .close-fullscreen {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #374151;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .close-fullscreen:hover {
-            background-color: #4b5563;
-        }
+      }
+      /* Pop-up Styles */
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #1f2937;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        width: 90%;
+        max-width: 700px;
+        text-align: center;
+      }
+      .popup img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .popup img:hover {
+        transform: scale(1.05);
+      }
+      .popup-content {
+        max-height: 300px;
+        overflow-y: auto;
+        padding-right: 10px;
+      }
+      .popup-content p {
+        font-size: 14px;
+        color: #d1d5db;
+        margin-bottom: 10px;
+      }
+      .popup button {
+        background-color: #374151;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .popup button:hover {
+        background-color: #4b5563;
+      }
+      /* Overlay Styles */
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+        z-index: 999;
+      }
+      /* Fullscreen Styles */
+      .fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1001;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .fullscreen img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      /* Close Button for Fullscreen */
+      .close-fullscreen {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: #374151;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .close-fullscreen:hover {
+        background-color: #4b5563;
+      }
+      /* Custom Scrollbar */
+      .popup-content::-webkit-scrollbar {
+        width: 8px;
+      }
+      .popup-content::-webkit-scrollbar-track {
+        background: #374151;
+        border-radius: 4px;
+      }
+      .popup-content::-webkit-scrollbar-thumb {
+        background: #6b7280;
+        border-radius: 4px;
+      }
+      .popup-content::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af;
+      }
     </style>
-</head>
-<body class="bg-gray-900 flex items-center justify-center h-screen">
-    <div class="bg-gray-800 rounded-lg shadow-lg max-w-sm w-full overflow-hidden">
-        <!-- Cover Background with Hover Effect -->
-        <div class="h-48 w-full relative group cover-background">
-            <!-- Hover Overlay -->
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300"></div>
-            <!-- Circular Logo -->
-            <div class="absolute inset-0 flex items-center justify-center">
-                <img src="./logo.jpg" alt="Logo" class="rounded-full w-24 h-24 shadow-lg">
-            </div>
+  </head>
+  <body class="bg-gray-900 flex items-center justify-center h-screen">
+    <div
+      class="bg-gray-800 rounded-lg shadow-lg max-w-sm w-full overflow-hidden"
+    >
+      <!-- Cover Background -->
+      <div class="h-48 w-full relative group cover-background">
+        <!-- Hover Overlay -->
+        <div
+          class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300"
+        ></div>
+        <!-- Circular Logo -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <img
+            src="./logo.jpg"
+            alt="FOTOQIUT Logo"
+            class="rounded-full w-24 h-24 shadow-lg"
+          />
         </div>
-        <div class="p-8">
-            <div class="text-center">
-                <h1 class="text-4xl font-bold text-gold caramel-regular">FOTOQIUT</h1>
-                <p class="text-sm text-gray-300 mt-2">MERAKAM KENANGAN,</p>
-                <p class="text-sm text-gray-300 mt-1">MENGHIDUPKAN MEMORI,</p>
-                <p class="text-sm text-gray-300 mt-1">SETIAP GAMBAR, SEBUAH CERITA ABADI.</p>
-            </div>
-            <div class="mt-6">
-                <!-- Buttons with Icons -->
-                <a id="shootButton" href="#" target="_blank" class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300">
-                    <i class="fa-solid fa-camera"></i> PAKEJ SHOOT GAMBAR RAYA 2025
-                </a>
-                <a href="https://www.instagram.com/fotoqiut_photography/" target="_blank" class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300">
-                    <i class="fab fa-instagram"></i> INSTAGRAM | GALLERY
-                </a>
-                <a href="#" target="_blank" class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300">
-                    <i class="fab fa-instagram"></i> INSTAGRAM | RAYA
-                </a>
-                <a href="https://www.facebook.com/FOTOQIUTPHOTOGRAPHY" target="_blank" class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300">
-                    <i class="fab fa-facebook"></i> FACEBOOK
-                </a>
-                <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0KQq0vukMNdEu0uBrVz2pmFVSyN5ylUf1AvmISXPkekIHk_fHhd2sVBfW-xksPeTRSmo_Zn3wu?gv=true" target="_blank" class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300">
-                    <i class="fas fa-envelope"></i> BOOKING NOW | CONTACT US
-                </a>
-            </div>
-            <!-- Footer -->
-            <div class="mt-6 text-center text-gray-400 text-sm">
-                &copy; 2025 FOTOQIUT. All rights reserved.
-            </div>
+      </div>
+      <!-- Content Section -->
+      <div class="p-8">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-gold caramel-regular">FOTOQIUT</h1>
+          <p class="text-sm text-gray-300 mt-2">MERAKAM KENANGAN,</p>
+          <p class="text-sm text-gray-300 mt-1">MENGHIDUPKAN MEMORI,</p>
+          <p class="text-sm text-gray-300 mt-1">
+            SETIAP GAMBAR, SEBUAH CERITA ABADI.
+          </p>
         </div>
+        <!-- Buttons -->
+        <div class="mt-6">
+          <a
+            id="shootButton"
+            href="#"
+            target="_blank"
+            class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300"
+          >
+            <i class="fa-solid fa-camera"></i> PAKEJ SHOOT GAMBAR RAYA 2025
+          </a>
+          <a
+            href="https://www.instagram.com/fotoqiut_photography/"
+            target="_blank"
+            class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300"
+          >
+            <i class="fab fa-instagram"></i> INSTAGRAM | GALLERY
+          </a>
+          <!-- <a href="#" target="_blank" class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300">
+                    <i class="fab fa-instagram"></i> INSTAGRAM | RAYA 
+                </a> -->
+          <a
+            href="https://www.facebook.com/FOTOQIUTPHOTOGRAPHY"
+            target="_blank"
+            class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300"
+          >
+            <i class="fab fa-facebook"></i> FACEBOOK
+          </a>
+          <a
+            href="https://calendar.app.google/8kzNybaJXefFbYjd8"
+            target="_blank"
+            class="block bg-gray-700 text-white text-center py-2 px-4 rounded-lg mb-2 hover:bg-gray-600 transition duration-300"
+          >
+            <i class="fas fa-envelope"></i> BOOKING NOW | CONTACT US
+          </a>
+        </div>
+        <!-- Footer -->
+        <div class="mt-6 text-center text-gray-400 text-sm">
+          &copy; 2025 FOTOQIUT. All rights reserved.
+        </div>
+      </div>
     </div>
 
     <!-- Pop-up Box -->
-    <div id="popup" class="popup">
-        <img id="popupImage" src="./pakej-raya.jpg" alt="Package Photo">
-        <div class="popup-content">
-            <h1 class="font-bold text-white mb-2">05/03/2025 - 15/03/2025</h2>
-            <p class="mb-2 font-bold">PAKEJ BIASA : 08:30 P.M. , 08:45 P.M. , 08:55 P.M. , 09:15 P.M. , 09:25 P.M. , </br>
-                09:35 P.M. , 09:45 P.M. , 09:55 P.M. , 10:15 P.M. , 10:25 P.M. , 10:35 P.M</p>
-            <p class="font-bold">PAKEJ V.I.P : 09:.00 P.M. , 10.00 P.M.</p>
-            <h1 class="font-bold text-white mt-6 mb-2">16/03/2025 - 29/03/2025</h2>
-            <p class="mb-2 font-bold">PAKEJ BIASA : 10:00 A.M. , 10:15 A.M. , 10:25 A.M. , 10:35 A.M. , 10:45 A.M. , </br>
-                10:55 A.M. , 11:15 A.M. , 11:25 A.M. , 11:35 A.M. , 11:45 A.M. , 11:55 A.M. , </br>
-                12:15 A.M. , 12:25 A.M. , 12:35 A.M. , 12:45 A.M. , 02:00 P.M. , 02:15 P.M. , </br>
-                02:25 P.M. , 02:35 P.M. , 02:45 P.M. , 02:55 P.M. , 03:15 P.M. , 03:25 P.M. , </br>
-                03:35 P.M. , 03:45 P.M. , 03:55 P.M. , 05:00 P.M. , 05:15 P.M. , 05:25 P.M. , </br>
-                05:35 P.M. , 05:45 P.M. , 05:55 P.M. , 08:30 P.M. , 08:45 P.M. , 08:55 P.M. , </br>
-                09:15 P.M. , 09:25 P.M. , 09:35 P.M. , 09:45 P.M. , 09:55 P.M. , 10:15 P.M. , </br>
-                10:25 P.M. , 10:35 P.M.</p>
-            <p class="font-bold">PAKEJ V.I.P : 10:00 A.M. , 11:00 A.M. , 12:00 A.M. , 02:00 P.M. , </br>
-                03:00 P.M. , 05:00 P.M. , 09:00 P.M.</p>
-        </div>
-        <button id="closePopup" class="mt-4">
-            Close
-        </button>
+    <div
+      id="popup"
+      class="popup"
+      role="dialog"
+      aria-labelledby="popupTitle"
+      aria-modal="true"
+    >
+      <img
+        id="popupImage"
+        src="./pakej-raya.jpg"
+        alt="Package Photo"
+        tabindex="0"
+      />
+      <div class="popup-content">
+        <h1 id="popupTitle" class="font-bold text-white mb-2">
+          05/03/2025 - 15/03/2025
+        </h1>
+        <p class="mb-2 font-bold">
+          PAKEJ KETUPAT : 08:30 P.M. , 08:45 P.M. , 08:55 P.M. , 09:15 P.M. ,
+          09:25 P.M. , <br />
+          09:35 P.M. , 09:45 P.M. , 09:55 P.M. , 10:15 P.M. , 10:25 P.M. , 10:35
+          P.M
+        </p>
+        <p class="font-bold">PAKEJ V.I.P : 09:.00 P.M. , 10.00 P.M.</p>
+        <h1 class="font-bold text-white mt-6 mb-2">16/03/2025 - 29/03/2025</h1>
+        <p class="mb-2 font-bold">
+          PAKEJ KETUPAT : 10:00 A.M. , 10:15 A.M. , 10:25 A.M. , 10:35 A.M. ,
+          10:45 A.M. , <br />
+          10:55 A.M. , 11:15 A.M. , 11:25 A.M. , 11:35 A.M. , 11:45 A.M. , 11:55
+          A.M. , <br />
+          12:15 P.M. , 12:25 P.M. , 12:35 P.M. , 12:45 P.M. , 02:00 P.M. , 02:15
+          P.M. , <br />
+          02:25 P.M. , 02:35 P.M. , 02:45 P.M. , 02:55 P.M. , 03:15 P.M. , 03:25
+          P.M. , <br />
+          03:35 P.M. , 03:45 P.M. , 03:55 P.M. , 05:00 P.M. , 05:15 P.M. , 05:25
+          P.M. , <br />
+          05:35 P.M. , 05:45 P.M. , 05:55 P.M. , 08:30 P.M. , 08:45 P.M. , 08:55
+          P.M. , <br />
+          09:15 P.M. , 09:25 P.M. , 09:35 P.M. , 09:45 P.M. , 09:55 P.M. , 10:15
+          P.M. , <br />
+          10:25 P.M. , 10:35 P.M.
+        </p>
+        <p class="font-bold">
+          PAKEJ V.I.P : 10:00 A.M. , 11:00 A.M. , 12:00 P.M. , 02:00 P.M. ,
+          <br />
+          03:00 P.M. , 05:00 P.M. , 09:00 P.M.
+        </p>
+      </div>
+      <button id="closePopup" class="mt-4" aria-label="Close pop-up">
+        Close
+      </button>
     </div>
 
     <!-- Fullscreen Container -->
     <div id="fullscreenContainer" class="fullscreen hidden">
-        <img id="fullscreenImage" src="./example.jpg" alt="Fullscreen Photo">
-        <!-- Close Button -->
-        <button id="closeFullscreen" class="close-fullscreen">
-            <i class="fas fa-times"></i>
-        </button>
+      <img id="fullscreenImage" src="./example.jpg" alt="Fullscreen Photo" />
+      <button
+        id="closeFullscreen"
+        class="close-fullscreen"
+        aria-label="Close fullscreen"
+      >
+        <i class="fas fa-times"></i>
+      </button>
     </div>
 
     <!-- Overlay -->
     <div id="overlay" class="overlay"></div>
 
+    <!-- JavaScript -->
     <script>
-        // JavaScript to handle pop-up functionality
-        const shootButton = document.getElementById('shootButton');
-        const popup = document.getElementById('popup');
-        const overlay = document.getElementById('overlay');
-        const closePopup = document.getElementById('closePopup');
-        const popupImage = document.getElementById('popupImage');
-        const fullscreenContainer = document.getElementById('fullscreenContainer');
-        const fullscreenImage = document.getElementById('fullscreenImage');
-        const closeFullscreen = document.getElementById('closeFullscreen');
+      // JavaScript to handle pop-up and fullscreen functionality
+      const shootButton = document.getElementById("shootButton");
+      const popup = document.getElementById("popup");
+      const overlay = document.getElementById("overlay");
+      const closePopup = document.getElementById("closePopup");
+      const popupImage = document.getElementById("popupImage");
+      const fullscreenContainer = document.getElementById(
+        "fullscreenContainer"
+      );
+      const fullscreenImage = document.getElementById("fullscreenImage");
+      const closeFullscreen = document.getElementById("closeFullscreen");
 
-        // Show pop-up and overlay when button is clicked
-        shootButton.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent default link behavior
-            popup.style.display = 'block';
-            overlay.style.display = 'block';
-        });
+      // Show pop-up and overlay
+      shootButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        popup.style.display = "block";
+        overlay.style.display = "block";
+      });
 
-        // Hide pop-up and overlay when close button is clicked
-        closePopup.addEventListener('click', () => {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-        });
+      // Hide pop-up and overlay
+      closePopup.addEventListener("click", () => {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+      });
 
-        // Hide pop-up and overlay when clicking outside the pop-up
-        overlay.addEventListener('click', () => {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-            fullscreenContainer.classList.add('hidden'); // Ensure fullscreen is hidden
-        });
+      // Hide pop-up and overlay when clicking outside
+      overlay.addEventListener("click", () => {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+        fullscreenContainer.classList.add("hidden");
+      });
 
-        // Expand image to fullscreen when clicked
-        popupImage.addEventListener('click', () => {
-            fullscreenImage.src = popupImage.src; // Set the same image source
-            fullscreenContainer.classList.remove('hidden'); // Show fullscreen container
-            overlay.style.display = 'block'; // Keep overlay visible
-        });
+      // Expand image to fullscreen
+      popupImage.addEventListener("click", () => {
+        fullscreenImage.src = popupImage.src;
+        fullscreenContainer.classList.remove("hidden");
+        overlay.style.display = "block";
+      });
 
-        // Exit fullscreen when clicking the close button
-        closeFullscreen.addEventListener('click', () => {
-            fullscreenContainer.classList.add('hidden'); // Hide fullscreen container
-            overlay.style.display = 'none'; // Hide overlay
-        });
+      // Exit fullscreen
+      closeFullscreen.addEventListener("click", () => {
+        fullscreenContainer.classList.add("hidden");
+        overlay.style.display = "none";
+      });
 
-        // Exit fullscreen when clicking the fullscreen image
-        fullscreenImage.addEventListener('click', () => {
-            fullscreenContainer.classList.add('hidden'); // Hide fullscreen container
-            overlay.style.display = 'none'; // Hide overlay
-        });
+      // Exit fullscreen when clicking the image
+      fullscreenImage.addEventListener("click", () => {
+        fullscreenContainer.classList.add("hidden");
+        overlay.style.display = "none";
+      });
     </script>
-</body>
+  </body>
 </html>
